@@ -1,0 +1,22 @@
+{
+  "id": "ntfy-me",
+  "name": {
+    "en": "Ntfy me"
+  },
+  "class": "other",
+  "icon": "/drivers/ntfy-me/assets/icon.svg",
+  "capabilities": [],
+  "pair": [
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": {
+        "next": "add_devices"
+      }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ]
+}

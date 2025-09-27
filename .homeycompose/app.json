@@ -24,5 +24,17 @@
   "author": {
     "name": "Ronald Derksen",
     "email": "ronald@derksen-it.nl"
-  }
+  },
+  "flow": {
+    "actions": [
+      {
+        "$extend": "flow/actions/send-message.json"
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "$extend": "drivers/ntfy-me/driver.compose.json"
+    }
+  ]
 }

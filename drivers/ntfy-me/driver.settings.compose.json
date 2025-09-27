@@ -1,0 +1,12 @@
+[
+  {
+    "id": "token",
+    "type": "text",
+    "label": {
+      "en": "Ntfy me token"
+    },
+    "placeholder": {
+      "en": "The Ntfy me token"
+    }
+  }
+]

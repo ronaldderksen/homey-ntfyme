@@ -25,5 +25,174 @@
   "author": {
     "name": "Ronald Derksen",
     "email": "ronald@derksen-it.nl"
-  }
+  },
+  "flow": {
+    "actions": [
+      {
+        "id": "ntfy-me:build-json",
+        "title": {
+          "en": "Build message"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "title": {
+              "en": "Device"
+            },
+            "filter": "driver_id=ntfy-me"
+          },
+          {
+            "type": "text",
+            "name": "key",
+            "title": {
+              "en": "Key"
+            },
+            "placeholder": {
+              "en": "Key"
+            }
+          },
+          {
+            "type": "text",
+            "name": "value",
+            "title": {
+              "en": "Value"
+            },
+            "placeholder": {
+              "en": "Value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "ntfy-me:send-flow-message",
+        "title": {
+          "en": "Send message: [[message]] from flow name: [[flow_name]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "title": {
+              "en": "Device"
+            },
+            "filter": "driver_id=ntfy-me"
+          },
+          {
+            "type": "text",
+            "name": "message",
+            "title": {
+              "en": "Message"
+            },
+            "placeholder": {
+              "en": "Message to send"
+            }
+          },
+          {
+            "type": "text",
+            "name": "flow_name",
+            "title": {
+              "en": "Flow name"
+            },
+            "placeholder": {
+              "en": "Describe the flow"
+            },
+            "required": false
+          }
+        ]
+      },
+      {
+        "id": "ntfy-me:send-image",
+        "title": {
+          "en": "Send image [[droptoken]] with [[message]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "title": {
+              "en": "Device"
+            },
+            "filter": "driver_id=ntfy-me"
+          },
+          {
+            "type": "text",
+            "required": false,
+            "name": "message",
+            "title": {
+              "en": "Message"
+            },
+            "placeholder": {
+              "en": "Message to send"
+            }
+          }
+        ],
+        "droptoken": [
+          "image"
+        ]
+      },
+      {
+        "id": "ntfy-me:send-message",
+        "title": {
+          "en": "Send message: [[message]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "title": {
+              "en": "Device"
+            },
+            "filter": "driver_id=ntfy-me"
+          },
+          {
+            "type": "text",
+            "name": "message",
+            "title": {
+              "en": "Message"
+            },
+            "placeholder": {
+              "en": "Message to send"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "id": "ntfy-me",
+      "name": {
+        "en": "Ntfy me"
+      },
+      "class": "other",
+      "icon": "/drivers/ntfy-me/assets/icon.svg",
+      "capabilities": [],
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "id": "token",
+          "type": "text",
+          "label": {
+            "en": "Ntfy me token"
+          },
+          "placeholder": {
+            "en": "The Ntfy me token"
+          }
+        }
+      ]
+    }
+  ]
 }

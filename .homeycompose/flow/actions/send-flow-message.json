@@ -1,0 +1,37 @@
+{
+  "id": "ntfy-me:send-flow-message",
+  "title": {
+    "en": "Send message: [[message]] from flow name: [[flow_name]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "title": {
+        "en": "Device"
+      },
+      "filter": "driver_id=ntfy-me"
+    },
+    {
+      "type": "text",
+      "name": "message",
+      "title": {
+        "en": "Message"
+      },
+      "placeholder": {
+        "en": "Message to send"
+      }
+    },
+    {
+      "type": "text",
+      "name": "flow_name",
+      "title": {
+        "en": "Flow name"
+      },
+      "placeholder": {
+        "en": "Describe the flow"
+      },
+      "required": false
+    }
+  ]
+}

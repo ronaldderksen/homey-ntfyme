@@ -1,0 +1,26 @@
+{
+  "id": "ntfy-me:send-message",
+  "title": {
+    "en": "Send message: [[message]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "title": {
+        "en": "Device"
+      },
+      "filter": "driver_id=ntfy-me"
+    },
+    {
+      "type": "text",
+      "name": "message",
+      "title": {
+        "en": "Message"
+      },
+      "placeholder": {
+        "en": "Message to send"
+      }
+    }
+  ]
+}

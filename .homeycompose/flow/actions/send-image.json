@@ -1,0 +1,30 @@
+{
+  "id": "ntfy-me:send-image",
+  "title": {
+    "en": "Send image [[droptoken]] with [[message]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "title": {
+        "en": "Device"
+      },
+      "filter": "driver_id=ntfy-me"
+    },
+    {
+      "type": "text",
+      "required": false,
+      "name": "message",
+      "title": {
+        "en": "Message"
+      },
+      "placeholder": {
+        "en": "Message to send"
+      }
+    }
+  ],
+  "droptoken": [
+    "image"
+  ]
+}

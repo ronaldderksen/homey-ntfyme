@@ -1,1 +1,6 @@
-{}
+{
+  "add_device": {
+    "title": "Add Ntfy me device",
+    "intro": "Select the Ntfy me device to add."
+  }
+}

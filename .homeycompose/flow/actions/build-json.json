@@ -1,0 +1,36 @@
+{
+  "id": "ntfy-me:build-json",
+  "title": {
+    "en": "Build message"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "title": {
+        "en": "Device"
+      },
+      "filter": "driver_id=ntfy-me"
+    },
+    {
+      "type": "text",
+      "name": "key",
+      "title": {
+        "en": "Key"
+      },
+      "placeholder": {
+        "en": "Key"
+      }
+    },
+    {
+      "type": "text",
+      "name": "value",
+      "title": {
+        "en": "Value"
+      },
+      "placeholder": {
+        "en": "Value"
+      }
+    }
+  ]
+}
