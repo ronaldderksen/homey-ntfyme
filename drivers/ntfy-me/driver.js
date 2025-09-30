@@ -69,19 +69,7 @@ module.exports = class NtfyMeDriver extends Homey.Driver {
         throw new Error('No device available');
       }
 
-      const flowName = typeof args.flow_name === 'string' ? args.flow_name.trim() : '';
-      const messagePayload = {
-        topic: 'homey-flow-message',
-        msg: args.message,
-      };
-
-      if (flowName) {
-        messagePayload.flow = flowName;
-      }
-
-      const message = JSON.stringify(messagePayload);
-
-      await args.device.sendMessage(message);
+      await args.device.sendFlowMessage(args);
 
       return true;
     });
@@ -98,7 +86,7 @@ module.exports = class NtfyMeDriver extends Homey.Driver {
         throw new Error('No image provided');
       }
 
-      await this.#sendImage(args.device, imageToken, args.message);
+      await args.device.sendImage(imageToken, args.message);
 
       return true;
     });
@@ -166,31 +154,6 @@ module.exports = class NtfyMeDriver extends Homey.Driver {
     }
   }
 
-  async #sendImage(device, image, message) {
-    const homeyImage = this.#normalizeImage(image);
-    if (!homeyImage) {
-      throw new Error('No image provided');
-    }
-
-    const rawMessage = typeof message === 'string' ? message.trim() : '';
-
-    const { buffer, metadata } = await this.#readImageBuffer(homeyImage);
-    if (!buffer.length) {
-      throw new Error('Image data is empty');
-    }
-
-    const payload = {
-      topic: 'homey-image-message',
-      image: buffer.toString('base64'),
-    };
-
-    if (rawMessage) {
-      payload.msg = rawMessage;
-    }
-
-    await device.sendMessage(JSON.stringify(payload));
-  }
-
   #getImageToken(args) {
     if (!args || typeof args !== 'object') {
       return null;
@@ -204,46 +167,6 @@ module.exports = class NtfyMeDriver extends Homey.Driver {
     ];
 
     return candidates.find((candidate) => Boolean(candidate)) || null;
-  }
-
-  #normalizeImage(image) {
-    if (!image) {
-      return null;
-    }
-
-    if (typeof image.getStream === 'function') {
-      return image;
-    }
-
-    if (image.image && typeof image.image.getStream === 'function') {
-      return image.image;
-    }
-
-    if (image.value && typeof image.value.getStream === 'function') {
-      return image.value;
-    }
-
-    return null;
-  }
-
-  async #readImageBuffer(image) {
-    const stream = await image.getStream();
-    const chunks = [];
-
-    await new Promise((resolve, reject) => {
-      stream.on('data', (chunk) => chunks.push(chunk));
-      stream.on('end', resolve);
-      stream.on('error', reject);
-    });
-
-    return {
-      buffer: Buffer.concat(chunks),
-      metadata: {
-        filename: stream.filename,
-        contentType: stream.contentType,
-        contentLength: stream.contentLength,
-      },
-    };
   }
 
 };
