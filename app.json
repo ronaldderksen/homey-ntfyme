@@ -31,7 +31,10 @@
       {
         "id": "ntfy-me:build-json",
         "title": {
-          "en": "Build message"
+          "en": "Build JSON"
+        },
+        "titleFormatted": {
+          "en": "Build JSON: [[key]] = [[value]]"
         },
         "args": [
           {
@@ -68,7 +71,7 @@
             "name": "build_json",
             "type": "string",
             "title": {
-              "en": "Builded message"
+              "en": "JSON"
             }
           }
         ]
@@ -77,6 +80,9 @@
         "id": "ntfy-me:send-flow-message",
         "title": {
           "en": "Send message: [[message]] from flow name: [[flow_name]]"
+        },
+        "titleFormatted": {
+          "en": "Send message [[message]] (flow: [[flow_name]])"
         },
         "args": [
           {
@@ -115,6 +121,9 @@
         "title": {
           "en": "Send image [[droptoken]] with [[message]]"
         },
+        "titleFormatted": {
+          "en": "Send image [[droptoken]] with [[message]]"
+        },
         "args": [
           {
             "type": "device",
@@ -144,6 +153,9 @@
         "id": "ntfy-me:send-message",
         "title": {
           "en": "Send message: [[message]]"
+        },
+        "titleFormatted": {
+          "en": "Send message [[message]]"
         },
         "args": [
           {

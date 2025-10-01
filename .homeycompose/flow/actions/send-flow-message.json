@@ -3,6 +3,9 @@
   "title": {
     "en": "Send message: [[message]] from flow name: [[flow_name]]"
   },
+  "titleFormatted": {
+    "en": "Send message [[message]] (flow: [[flow_name]])"
+  },
   "args": [
     {
       "type": "device",

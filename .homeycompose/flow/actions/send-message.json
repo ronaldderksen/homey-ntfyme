@@ -3,6 +3,9 @@
   "title": {
     "en": "Send message: [[message]]"
   },
+  "titleFormatted": {
+    "en": "Send message [[message]]"
+  },
   "args": [
     {
       "type": "device",

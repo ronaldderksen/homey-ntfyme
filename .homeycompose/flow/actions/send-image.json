@@ -3,6 +3,9 @@
   "title": {
     "en": "Send image [[droptoken]] with [[message]]"
   },
+  "titleFormatted": {
+    "en": "Send image [[droptoken]] with [[message]]"
+  },
   "args": [
     {
       "type": "device",

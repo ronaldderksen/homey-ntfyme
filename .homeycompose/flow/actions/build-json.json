@@ -1,7 +1,10 @@
 {
   "id": "ntfy-me:build-json",
   "title": {
-    "en": "Build message"
+    "en": "Build JSON"
+  },
+  "titleFormatted": {
+    "en": "Build JSON: [[key]] = [[value]]"
   },
   "args": [
     {
@@ -38,7 +41,7 @@
       "name": "build_json",
       "type": "string",
       "title": {
-        "en": "Builded message"
+        "en": "JSON"
       }
     }
   ]
