@@ -32,5 +32,14 @@
         "en": "Value"
       }
     }
+  ],
+  "tokens": [
+    {
+      "name": "build_json",
+      "type": "string",
+      "title": {
+        "en": "Builded message"
+      }
+    }
   ]
 }

@@ -46,7 +46,7 @@ module.exports = class NtfyMeDriver extends Homey.Driver {
 
     this.jsonStringToken = this.homey.flow.createToken(tokenId, {
       type: 'string',
-      title: 'Ntfy me Message',
+      title: 'Builded Message',
     });
   }
 
@@ -109,16 +109,18 @@ module.exports = class NtfyMeDriver extends Homey.Driver {
       }
 
       const token = await this.#ensureJsonStringToken();
-
       const currentPayload = await this.#getCurrentJsonPayload(token);
       const updatedPayload = {
         ...currentPayload,
         [key]: value,
       };
 
+      const payloadString = JSON.stringify(updatedPayload);
       await token.setValue(JSON.stringify(updatedPayload));
 
-      return true;
+      return {
+        build_json: payloadString,
+      };
     });
   }
 
