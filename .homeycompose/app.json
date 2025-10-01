@@ -12,6 +12,7 @@
   "description": {
     "en": "Receive notifications on Ntfy me app"
   },
+  "brandColor": "#1A73E8",
   "category": [
     "internet"
   ],

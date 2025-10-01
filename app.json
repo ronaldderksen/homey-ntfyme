@@ -13,6 +13,7 @@
   "description": {
     "en": "Receive notifications on Ntfy me app"
   },
+  "brandColor": "#1A73E8",
   "category": [
     "internet"
   ],
@@ -188,6 +189,11 @@
       },
       "class": "other",
       "icon": "/drivers/ntfy-me/assets/icon.svg",
+      "images": {
+        "small": "/drivers/ntfy-me/assets/images/small.png",
+        "large": "/drivers/ntfy-me/assets/images/large.png",
+        "xlarge": "/drivers/ntfy-me/assets/images/xlarge.png"
+      },
       "capabilities": [],
       "pair": [
         {
