@@ -53,13 +53,29 @@ module.exports = class NtfyMeDevice extends Homey.Device {
       throw new Error('Image data is empty');
     }
 
-    const payload = {
+    let payload = {
       topic: 'homey-image',
       image: buffer.toString('base64'),
     };
 
     if (rawMessage) {
-      payload.msg = rawMessage;
+      if (this.#isJsonString(rawMessage)) {
+        try {
+          const parsedMessage = JSON.parse(rawMessage);
+          if (parsedMessage && typeof parsedMessage === 'object' && !Array.isArray(parsedMessage)) {
+            payload = {
+              ...payload,
+              ...parsedMessage,
+            };
+          } else {
+            payload.msg = rawMessage;
+          }
+        } catch (error) {
+          payload.msg = rawMessage;
+        }
+      } else {
+        payload.msg = rawMessage;
+      }
     }
 
     await this.sendMessage(JSON.stringify(payload));
