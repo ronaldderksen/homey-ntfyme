@@ -1,10 +1,10 @@
 {
   "id": "ntfy-me:send-image",
   "title": {
-    "en": "Send image [[droptoken]] with [[message]]"
+    "en": "Ntfy me (img) [[droptoken]] with [[message]]"
   },
   "titleFormatted": {
-    "en": "Send image [[droptoken]] with [[message]]"
+    "en": "Ntfy me (img) [[droptoken]] with [[message]]"
   },
   "args": [
     {

@@ -1,10 +1,10 @@
 {
   "id": "ntfy-me:send-message",
   "title": {
-    "en": "Send message: [[message]]"
+    "en": "Ntfy me"
   },
   "titleFormatted": {
-    "en": "Send message [[message]]"
+    "en": "Ntfy me [[message]]"
   },
   "args": [
     {

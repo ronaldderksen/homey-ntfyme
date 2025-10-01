@@ -1,10 +1,10 @@
 {
   "id": "ntfy-me:send-flow-message",
   "title": {
-    "en": "Send message: [[message]] from flow name: [[flow_name]]"
+    "en": "Ntfy me (flow)"
   },
   "titleFormatted": {
-    "en": "Send message [[message]] (flow: [[flow_name]])"
+    "en": "Ntfy me [[message]] (flow: [[flow_name]])"
   },
   "args": [
     {
