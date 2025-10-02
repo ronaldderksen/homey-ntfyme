@@ -80,10 +80,10 @@
       {
         "id": "ntfy-me:send-flow-message",
         "title": {
-          "en": "Ntfy me (flow)"
+          "en": "Ntfy me from flow"
         },
         "titleFormatted": {
-          "en": "Ntfy me [[message]] (flow: [[flow_name]])"
+          "en": "Ntfy me: [[message]] flow [[flow_name]]"
         },
         "args": [
           {
@@ -120,10 +120,10 @@
       {
         "id": "ntfy-me:send-image",
         "title": {
-          "en": "Ntfy me (img) [[droptoken]] with [[message]]"
+          "en": "Ntfy me with image"
         },
         "titleFormatted": {
-          "en": "Ntfy me (img) [[droptoken]] with [[message]]"
+          "en": "Ntfy me: [[message]] with [[droptoken]]"
         },
         "args": [
           {
@@ -156,7 +156,7 @@
           "en": "Ntfy me"
         },
         "titleFormatted": {
-          "en": "Ntfy me [[message]]"
+          "en": "Ntfy me: [[message]]"
         },
         "args": [
           {
