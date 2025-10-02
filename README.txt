@@ -1,6 +1,3 @@
-Ntfy me for Homey
-=================
-
 Ntfy me is a Homey app that lets you trigger ntfyme.net push notifications straight from your Homey flows. Use it to forward critical alerts, flows events, or attach images captured by Homey-enabled devices without leaving the Homey ecosystem.
 
 Features
