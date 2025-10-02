@@ -190,6 +190,12 @@
       },
       "class": "other",
       "icon": "/drivers/ntfy-me/assets/icon.svg",
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
       "images": {
         "small": "/drivers/ntfy-me/assets/images/small.png",
         "large": "/drivers/ntfy-me/assets/images/large.png",
