@@ -4,7 +4,7 @@
     "en": "Ntfy me with image"
   },
   "titleFormatted": {
-    "en": "Ntfy me: [[message]] with [[droptoken]]"
+    "en": "Ntfy me: [[message]] image [[droptoken]]"
   },
   "args": [
     {

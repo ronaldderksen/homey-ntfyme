@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "net.ntfyme.ntfyme",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "compatibility": ">=12.4.0",
   "sdk": 3,
   "platforms": [
@@ -27,7 +27,12 @@
     "name": "Ronald Derksen",
     "email": "ronald@derksen-it.nl"
   },
-  "support": "https://ntfyme.net/",
+  "support": "https://github.com/ronaldderksen/homey-ntfyme",
+  "homepage": "https://ntfyme.net/",
+  "source": "https://github.com/ronaldderksen/homey-ntfyme.git",
+  "bugs": {
+    "url": "https://github.com/ronaldderksen/homey-ntfyme/issues"
+  },
   "flow": {
     "actions": [
       {
@@ -124,7 +129,7 @@
           "en": "Ntfy me with image"
         },
         "titleFormatted": {
-          "en": "Ntfy me: [[message]] with [[droptoken]]"
+          "en": "Ntfy me: [[message]] image [[droptoken]]"
         },
         "args": [
           {
