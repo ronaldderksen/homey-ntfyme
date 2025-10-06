@@ -11,20 +11,80 @@ module.exports = class NtfyMeDriver extends Homey.Driver {
   }
 
   async onPair(session) {
-    session.setHandler('list_devices', async () => {
-      return [
-        {
-          name: 'Ntfy me',
-          data: {
-            id: 'ntfy-me'
-          }
-        }
-      ];
-    });
+    const devicesToAdd = this.#createPairingDevices();
+
+    session.setHandler('list_devices', async () => devicesToAdd);
 
     session.setHandler('add_device', async (device) => {
-      return device;
+      const requestedId = device?.data?.id;
+      const matchingDevice = devicesToAdd.find((candidate) => candidate.data.id === requestedId);
+
+      if (!matchingDevice) {
+        throw new Error('Unknown device selection');
+      }
+
+      return matchingDevice;
     });
+  }
+
+  #createPairingDevices() {
+    const existingDevices = this.getDevices();
+
+    const usedIds = new Set();
+    const usedNames = new Set();
+
+    existingDevices.forEach((device) => {
+      const data = typeof device.getData === 'function' ? device.getData() : device?.data;
+      if (data?.id) {
+        usedIds.add(String(data.id));
+      }
+
+      const name = typeof device.getName === 'function' ? device.getName() : device?.name;
+      if (name) {
+        usedNames.add(String(name));
+      }
+    });
+
+    const newDevice = {
+      name: this.#generateDeviceName(usedNames),
+      data: {
+        id: this.#generateDeviceId(usedIds),
+      },
+    };
+
+    return [newDevice];
+  }
+
+  #generateDeviceId(usedIds) {
+    const baseId = 'ntfy-me';
+    if (!usedIds.has(baseId)) {
+      return baseId;
+    }
+
+    let suffix = 2;
+    let candidate = '';
+    do {
+      candidate = `${baseId}-${suffix}`;
+      suffix += 1;
+    } while (usedIds.has(candidate));
+
+    return candidate;
+  }
+
+  #generateDeviceName(usedNames) {
+    const baseName = 'Ntfy me';
+    if (!usedNames.has(baseName)) {
+      return baseName;
+    }
+
+    let suffix = 2;
+    let candidate = '';
+    do {
+      candidate = `${baseName} ${suffix}`;
+      suffix += 1;
+    } while (usedNames.has(candidate));
+
+    return candidate;
   }
 
   #registerFlowTokens() {
