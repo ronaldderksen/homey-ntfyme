@@ -88,7 +88,7 @@ module.exports = class NtfyMeDriver extends Homey.Driver {
   }
 
   #registerFlowTokens() {
-    const tokenId = 'json_string';
+    const tokenId = 'build_json';
 
     let existingToken = null;
     try {
@@ -119,6 +119,7 @@ module.exports = class NtfyMeDriver extends Homey.Driver {
       }
 
       await args.device.sendMessage(args.message);
+
       return true;
     });
 
@@ -182,6 +183,36 @@ module.exports = class NtfyMeDriver extends Homey.Driver {
         build_json: payloadString,
       };
     });
+
+    const startJsonCard = this.homey.flow.getActionCard('ntfy-me:start-json');
+
+    startJsonCard.registerRunListener(async (args) => {
+      if (!args?.device) {
+        throw new Error('No device available');
+      }
+
+      const key = typeof args.key === 'string' ? args.key.trim() : '';
+      if (!key) {
+        throw new Error('No key provided');
+      }
+
+      const value = typeof args.value === 'string' ? args.value.trim() : '';
+      if (!value) {
+        throw new Error('No value provided');
+      }
+
+      const token = await this.#ensureJsonStringToken();
+      const updatedPayload = {
+        [key]: value,
+      };
+
+      const payloadString = JSON.stringify(updatedPayload);
+      await token.setValue(JSON.stringify(updatedPayload));
+
+      return {
+        build_json: payloadString,
+      };
+    });
   }
 
   async #ensureJsonStringToken() {
@@ -211,7 +242,7 @@ module.exports = class NtfyMeDriver extends Homey.Driver {
         return {};
       }
 
-      this.homey.log('Failed to read json_string token, resetting payload', error);
+      this.homey.log('Failed to read builded json token, resetting payload', error);
       return {};
     }
   }
