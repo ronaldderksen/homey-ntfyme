@@ -4,8 +4,8 @@ Features
 --------
 - Send plain text or pre-formatted JSON payloads to ntfyme.net.
 - Automatically wrap simple messages in a JSON envelope when needed.
-- Build JSON payloads inside a flow with the `Build JSON` action card.
-- Include images (drop tokens or flow tokens) in notifications.
+- Build JSON payloads inside a flow with the `Start Global Ntfy me JSON` and `Update JSON` action cards.
+- Include images or thumbnails (drop tokens or flow tokens) in notifications.
 
 Requirements
 ------------
@@ -25,14 +25,17 @@ Flow Action Cards
 - Ntfy me: Send a raw message (plain text or JSON).
 - Ntfy me (flow): Send a message with the flow name included in the payload.
 - Ntfy me (img): Upload an image along with an optional JSON body.
-- Build JSON: Accumulate key/value pairs into a JSON string token that can be reused by subsequent actions.
+- Ntfy me with thumbnail: Upload an image as a thumbnail along with an optional JSON body.
+- Start Global Ntfy me JSON: Reset the global JSON token and start it with a key/value pair.
+- Update JSON: Add or replace a key/value pair in either the global JSON token or an explicitly supplied JSON object.
 
 Tips
 ----
 - When the message field contains plain text, the app automatically wraps it in `{ "topic": "homey-message", "msg": "..." }` so ntfy understands the payload.
 - Provide a full JSON string if you want to control fields manually (for example, to set `priority` or `tags`).
-- The image action accepts uploaded images, Drop tokens, and image tokens from other cards.
-- Use the Build JSON card at the start of a flow, then pass its output to a later Ntfy me card for complex payloads.
+- The image and thumbnail actions accept uploaded images, Drop tokens, and image tokens from other cards.
+- Use Start Global Ntfy me JSON to reset the global `Global Ntfy me JSON` token, then use Update JSON to add more fields.
+- Leave the Global Ntfy me JSON field empty in Update JSON to update the global token, or enter `{}` to build a separate JSON output without updating the global token.
 
 Troubleshooting
 ---------------

@@ -1,10 +1,10 @@
 {
   "id": "ntfy-me:start-json",
   "title": {
-    "en": "Start JSON"
+    "en": "Start Global Ntfy me JSON"
   },
   "titleFormatted": {
-    "en": "Start JSON: [[key]] = [[value]]"
+    "en": "Start Global Ntfy me JSON: [[key]] = [[value]]"
   },
   "args": [
     {
@@ -33,15 +33,6 @@
       },
       "placeholder": {
         "en": "Value"
-      }
-    }
-  ],
-  "tokens": [
-    {
-      "name": "build_json",
-      "type": "string",
-      "title": {
-        "en": "JSON"
       }
     }
   ]

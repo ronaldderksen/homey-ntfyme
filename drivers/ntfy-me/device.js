@@ -41,6 +41,14 @@ module.exports = class NtfyMeDevice extends Homey.Device {
   }
 
   async sendImage(image, message) {
+    await this.#sendImagePayload(image, message, 'image', 'homey-image');
+  }
+
+  async sendThumb(image, message) {
+    await this.#sendImagePayload(image, message, 'thumb', 'homey-thumb');
+  }
+
+  async #sendImagePayload(image, message, imageProperty, topic) {
     const homeyImage = this.#normalizeImage(image);
     if (!homeyImage) {
       throw new Error('No image provided');
@@ -54,8 +62,8 @@ module.exports = class NtfyMeDevice extends Homey.Device {
     }
 
     let payload = {
-      topic: 'homey-image',
-      image: buffer.toString('base64'),
+      topic,
+      [imageProperty]: buffer.toString('base64'),
     };
 
     if (rawMessage) {

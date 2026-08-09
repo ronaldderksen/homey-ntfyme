@@ -1,0 +1,33 @@
+{
+  "id": "ntfy-me:send-thumb",
+  "title": {
+    "en": "Ntfy me with thumbnail"
+  },
+  "titleFormatted": {
+    "en": "Ntfy me: [[message]] thumb [[droptoken]]"
+  },
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "title": {
+        "en": "Device"
+      },
+      "filter": "driver_id=ntfy-me"
+    },
+    {
+      "type": "text",
+      "required": false,
+      "name": "message",
+      "title": {
+        "en": "Message"
+      },
+      "placeholder": {
+        "en": "Message to send"
+      }
+    }
+  ],
+  "droptoken": [
+    "image"
+  ]
+}

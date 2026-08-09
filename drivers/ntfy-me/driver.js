@@ -106,7 +106,7 @@ module.exports = class NtfyMeDriver extends Homey.Driver {
 
     this.jsonStringToken = this.homey.flow.createToken(tokenId, {
       type: 'string',
-      title: 'Builded Message',
+      title: 'Global Ntfy me JSON',
     });
   }
 
@@ -152,6 +152,23 @@ module.exports = class NtfyMeDriver extends Homey.Driver {
       return true;
     });
 
+    const sendThumbCard = this.homey.flow.getActionCard('ntfy-me:send-thumb');
+
+    sendThumbCard.registerRunListener(async (args) => {
+      if (!args?.device) {
+        throw new Error('No device available');
+      }
+
+      const imageToken = this.#getImageToken(args);
+      if (!imageToken) {
+        throw new Error('No image provided');
+      }
+
+      await args.device.sendThumb(imageToken, args.message);
+
+      return true;
+    });
+
     const buildJsonCard = this.homey.flow.getActionCard('ntfy-me:build-json');
 
     buildJsonCard.registerRunListener(async (args) => {
@@ -169,15 +186,20 @@ module.exports = class NtfyMeDriver extends Homey.Driver {
         throw new Error('No value provided');
       }
 
+      const jsonInput = typeof args.json === 'string' ? args.json.trim() : '';
       const token = await this.#ensureJsonStringToken();
-      const currentPayload = await this.#getCurrentJsonPayload(token);
+      const currentPayload = jsonInput
+        ? this.#parseJsonObject(jsonInput)
+        : await this.#getCurrentJsonPayload(token);
       const updatedPayload = {
         ...currentPayload,
         [key]: value,
       };
 
       const payloadString = JSON.stringify(updatedPayload);
-      await token.setValue(JSON.stringify(updatedPayload));
+      if (!jsonInput) {
+        await token.setValue(payloadString);
+      }
 
       return {
         build_json: payloadString,
@@ -207,11 +229,9 @@ module.exports = class NtfyMeDriver extends Homey.Driver {
       };
 
       const payloadString = JSON.stringify(updatedPayload);
-      await token.setValue(JSON.stringify(updatedPayload));
+      await token.setValue(payloadString);
 
-      return {
-        build_json: payloadString,
-      };
+      return true;
     });
   }
 
@@ -245,6 +265,21 @@ module.exports = class NtfyMeDriver extends Homey.Driver {
       this.homey.log('Failed to read builded json token, resetting payload', error);
       return {};
     }
+  }
+
+  #parseJsonObject(value) {
+    let parsed;
+    try {
+      parsed = JSON.parse(value);
+    } catch (error) {
+      throw new Error('Global Ntfy me JSON is invalid');
+    }
+
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      throw new Error('Global Ntfy me JSON must be an object');
+    }
+
+    return parsed;
   }
 
   #getImageToken(args) {
